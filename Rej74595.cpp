@@ -3,7 +3,7 @@
 
 
 
-Rej74595::begin(int type,char latch, char outen, int delau)
+Rej74595::begin(uint8_t type, uint8_t latch, uint8_t outen, int delau)
 {
 	oute = outen;
 	del = delau;
@@ -23,13 +23,13 @@ Rej74595::begin(int type,char latch, char outen, int delau)
 	
 }
 
-Rej74595::WriteValue(int value)
+Rej74595::WriteValue(uint8_t value)
 {
 	val = value;	
 }
 
 
-int Rej74595::ReadValue()
+uint8_t Rej74595::ReadValue()
 {
 	return val;
 }
@@ -39,9 +39,9 @@ Rej74595::Display(void)
 	sendSPI();
 }
 
-int Rej74595::StepDisplay(int bit1)
+uint8_t Rej74595::StepDisplay(uint8_t bit1)
 {
-	int res =0;
+	uint8_t res =0;
 	if(val &_BV(7)) res=1;
 	val = val<<1;
 	val = val + bit1;
@@ -51,9 +51,9 @@ int Rej74595::StepDisplay(int bit1)
 	return res;
 }
 
-int Rej74595::LoopDisplay(void)
+uint8_t Rej74595::LoopDisplay(void)
 {
-	int res =0;
+	uint8_t res =0;
 	if(val &_BV(7)) res=1;
 	val = val<<1;
 	val = val+res;
@@ -62,7 +62,7 @@ int Rej74595::LoopDisplay(void)
 	
 }
 
-Rej74595::WriteDisplay(int in)
+Rej74595::WriteDisplay(uint8_t in)
 {
 	val = in;
 	sendSPI();
@@ -72,13 +72,13 @@ Rej74595::WriteDisplay(int in)
 Rej74595::sendSPI()
 {
 	if(typ==LAT)digitalWrite(oute,HIGH);
-	if(typ==LAT)delay(del);
+	if(typ==LAT)delayMicroseconds(del);
 	SPI.transfer(val);
 	SPI.endTransaction();
 	digitalWrite(lat,LOW);
-	delay(del);
+	delayMicroseconds(del);
 	digitalWrite(lat,HIGH);
-	if(typ==LAT)delay(del);	
+	if(typ==LAT)delayMicroseconds(del);	
 	if(typ==LAT)digitalWrite(oute,LOW);
 	
 	

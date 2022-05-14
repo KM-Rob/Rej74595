@@ -1,24 +1,22 @@
 #######################################
-# Syntax Coloring Map For Disp74595
+# Syntax Coloring Map For Rej74595
 #######################################
 # Class
 #######################################
 
-Disp74595	KEYWORD1
-Disp		KEYWORD1
-disp		KEYWORD1
-display		KEYWORD1
-Display		KEYWORD1
+Rej74595	KEYWORD1
 
 #######################################
 # Methods and Functions
 #######################################	
 
 begin			KEYWORD2
+WriteValue			KEYWORD2
+ReadValue			KEYWORD2
+Display		KEYWORD2
+LoopDisplay			KEYWORD2
 WriteDisplay		KEYWORD2
 StepDisplay			KEYWORD2
-LoopDisplay			KEYWORD2
-ReadFirst			KEYWORD2
 
 
 #######################################

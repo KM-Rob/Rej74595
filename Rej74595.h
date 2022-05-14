@@ -10,10 +10,10 @@
 class Rej74595{
 	
 	private:
-	int val;	//wartość
-	char lat;
-	int typ;
-	char oute;	//output enable pin
+	uint8_t val;	//wartość
+	uint8_t lat;
+	uint8_t typ;
+	uint8_t oute;	//output enable pin
 	int del;	//delay time	
 	sendSPI(void);
 	
@@ -21,21 +21,23 @@ class Rej74595{
 	//inicjacja urzadzenia
 	// jesli type = OEL ("0") to pin latch = pin outen
 	// jesli type = LAT ("1") to latch i outen to osobne piny
-	// delau - długosc impulsu latch
-	begin(int type,char latch, char outen, int delau);
+	// latch - pin, do ktorego podpiety jest sygnal Latch rejestru
+	// outen - pin, do ktorego podpiety jest sygnal OutEn rejestru
+	// delau - długosc impulsu latch (us)
+	begin(uint8_t type,uint8_t latch, uint8_t outen, int delau);
 	//wpisuje wartosc "Value" do wyswietlenia ale nie wyswietla
-	WriteValue(int);
+	WriteValue(uint8_t);
 	//odczytuje wartosc "Value" do wyswietlenia
-	int ReadValue(void);
+	uint8_t ReadValue(void);
 	//wyświetla wartosc "Value"
 	Display(void);
 	//przesuwa wartosc "Value" bitowo o 1 i wyswietla 
-	int StepDisplay(int);
+	uint8_t StepDisplay(uint8_t);
 	//przesuwa wartosc "Value" bitowo o 1 i wyswietla - jesli jest przesuniecie
 	//to dodaje 1 tworzac efekt petli
-	int LoopDisplay(void);
+	uint8_t LoopDisplay(void);
 	//wpisuje wartosc "Value" i wyswietla ja
-	WriteDisplay(int);
+	WriteDisplay(uint8_t);
 
 };
 
